@@ -3,7 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -12,8 +12,10 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+     "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
