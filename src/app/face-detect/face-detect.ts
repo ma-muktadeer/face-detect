@@ -13,11 +13,12 @@ import { AfterViewInit, Component, ElementRef, Inject, PLATFORM_ID, ViewChild } 
 export class FaceDetect implements AfterViewInit {
   @ViewChild('video') videoRef!: ElementRef<HTMLVideoElement>;
   @ViewChild('canvas') canvasRef!: ElementRef<HTMLCanvasElement>;
-  faceapi: typeof import('@vladmandic/face-api/dist/face-api.esm.js');
+  faceapi: any;
+  faceDetectionInterval: any;
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
   async ngAfterViewInit(): Promise<void> {
     if (isPlatformBrowser(this.platformId)) {
-      this.faceapi = await import ('@vladmandic/face-api');
+      this.faceapi = await import('@vladmandic/face-api');
       // this.faceapi = await import('@vladmandic/face-api/dist/face-api.esm.js');
       await this.loadModels();
       this.startVideo();
@@ -38,8 +39,13 @@ export class FaceDetect implements AfterViewInit {
 
     this.faceapi.matchDimensions(canvas, displaySize);
 
-    setInterval(async () => {
+    if (this.faceDetectionInterval) {
+      clearInterval(this.faceDetectionInterval);
+    }
+
+    this.faceDetectionInterval = setInterval(async () => {
       const detections = await this.faceapi
+        // .detectAllFaces(video, new this.faceapi.SsdMobilenetv1Options())
         .detectAllFaces(video, new this.faceapi.TinyFaceDetectorOptions())
         .withFaceLandmarks()
         .withFaceExpressions()
@@ -49,27 +55,50 @@ export class FaceDetect implements AfterViewInit {
       const ctx = canvas.getContext('2d');
       ctx?.clearRect(0, 0, canvas.width, canvas.height);
 
-      this.faceapi.draw.drawDetections(canvas, resized);
-      this.faceapi.draw.drawFaceLandmarks(canvas, resized);
-      this.faceapi.draw.drawFaceExpressions(canvas, resized);
 
       resized.forEach(det => {
         console.log('det', det);
 
-        // draw face expressions, ensuring type compatibility
-  // this.faceapi.draw.drawFaceExpressions(canvas, [det] as DrawFaceExpressionsInput[]);
-
         const { age, gender, genderProbability } = det;
         const text = `${gender} (${Math.round(genderProbability * 100)}%) | Age: ${Math.round(age)}`;
 
+        // Create a new Point for the text position, slightly above the top-left corner
+        const textAnchor = {
+          x: det.detection.box.bottomLeft.x,
+          y: det.detection.box.bottomLeft.y
+        };
+
         const drawTextField = new this.faceapi.draw.DrawTextField(
           [text],
-          det.detection.box.bottomRight,
-          {}  // optional draw options
+          textAnchor,
+          {
+            anchorPosition: 'BOTTOM_LEFT',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            fontColor: 'white'
+          }
         );
-
-        drawTextField.draw(canvas.getContext('2d'));
+        drawTextField.draw(canvas);
       });
+
+const minProbability = 0.05
+      this.faceapi.draw.drawDetections(canvas, resized);
+      this.faceapi.draw.drawFaceLandmarks(canvas, resized);
+      this.faceapi.draw.drawFaceExpressions(canvas, resized, minProbability);
+
+      // resized.forEach(det => {
+      //   console.log('det', det);
+
+      //   const { age, gender, genderProbability } = det;
+      //   const text = `${gender} (${Math.round(genderProbability * 100)}%) | Age: ${Math.round(age)}`;
+
+      //   const drawTextField = new this.faceapi.draw.DrawTextField(
+      //     [text],
+      //     det.detection.box.bottomRight,
+      //     {}  // optional draw options
+      //   );
+
+      //   drawTextField.draw(canvas.getContext('2d'));
+      // });
     }, 100);
   }
 
