@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@use '../node_modules/bootstrap/scss/bootstrap.scss' as bt;
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(186, 186, 255, 0.26);
+  overflow-x: hidden;
+}

@@ -80,7 +80,7 @@ export class FaceDetect implements AfterViewInit {
         drawTextField.draw(canvas);
       });
 
-const minProbability = 0.05
+      const minProbability = 0.05
       this.faceapi.draw.drawDetections(canvas, resized);
       this.faceapi.draw.drawFaceLandmarks(canvas, resized);
       this.faceapi.draw.drawFaceExpressions(canvas, resized, minProbability);

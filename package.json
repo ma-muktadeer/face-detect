@@ -30,6 +30,7 @@
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.0",
     "@vladmandic/face-api": "^1.7.15",
+    "bootstrap": "^5.3.7",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
