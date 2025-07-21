@@ -2,7 +2,8 @@
 @use '../node_modules/bootstrap/scss/bootstrap.scss' as bt;
 
 html, body {
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   width: 100%;
   background-color: rgba(186, 186, 255, 0.26);
   overflow-x: hidden;

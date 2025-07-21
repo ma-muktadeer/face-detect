@@ -1,21 +1,19 @@
-<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10 col-sm-12">
-        <div class="card shadow-lg border-0 rounded-lg">
-          <div class="card-header bg-primary text-white text-center py-4 rounded-top-lg">
-            <h1 class="h3 mb-0"><strong>Welcome to Face Detect App</strong></h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10 col-sm-12">
+      <div class="card shadow-lg border-0 rounded-lg">
+        <!-- <div class="card-header bg-primary text-white text-center py-4 rounded-top-lg">
+          <h1 class="h3 mb-0"><strong>Welcome to Face Detect App</strong></h1>
+        </div> -->
+        <div class="card-body p-4">
+          <h2 class="h4 mb-3 text-secondary">Live Feed: Faces</h2>
+          <div class="video-container position-relative mb-3">
+            <video #video width="640" height="480" autoplay muted playsinline class="w-100 rounded"></video>
+            <canvas #canvas width="640" height="480" class="position-absolute top-0 start-0 w-100 h-100"></canvas>
           </div>
-          <div class="card-body p-4">
-            <h2 class="h4 mb-3 text-secondary">Live Feed: Faces</h2>
-            <div class="video-container position-relative mb-3">
-              <video #video width="640" height="480" autoplay muted playsinline class="w-100 rounded"></video>
-              <canvas #canvas width="640" height="480" class="position-absolute top-0 start-0 w-100 h-100"></canvas>
-            </div>
-            <p class="text-muted text-center mt-4 mb-0">
-              Get ready to see faces detected in real-time!
-            </p>
-          </div>
+          <p class="text-muted text-center mt-4 mb-0">
+            Get ready to see faces detected in real-time!
+          </p>
         </div>
       </div>
     </div>

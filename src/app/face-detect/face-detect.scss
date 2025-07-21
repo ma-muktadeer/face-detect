@@ -5,40 +5,40 @@
 //   transform: scaleX(-1); /* match flip */
 // }
 
-.vh-100 {
-    min-height: 100vh; /* Ensure the container takes full viewport height */
-  }
+// .vh-100 {
+//     min-height: 100vh; /* Ensure the container takes full viewport height */
+//   }
 
-  .rounded-lg {
-    border-radius: 1rem !important; /* Larger border-radius for the card */
-  }
+//   .rounded-lg {
+//     border-radius: 1rem !important; /* Larger border-radius for the card */
+//   }
 
-  .rounded-top-lg {
-    border-top-left-radius: 1rem !important;
-    border-top-right-radius: 1rem !important;
-  }
+//   .rounded-top-lg {
+//     border-top-left-radius: 1rem !important;
+//     border-top-right-radius: 1rem !important;
+//   }
 
-  .shadow-lg {
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; /* Stronger shadow */
-  }
+//   .shadow-lg {
+//     box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important; /* Stronger shadow */
+//   }
 
-  .bg-primary {
-    background-color: #007bff !important; /* Example primary color */
-  }
+//   .bg-primary {
+//     background-color: #007bff !important; /* Example primary color */
+//   }
 
-  .text-white {
-    color: #fff !important;
-  }
+//   .text-white {
+//     color: #fff !important;
+//   }
 
-  .text-secondary {
-    color: #6c757d !important;
-  }
+//   .text-secondary {
+//     color: #6c757d !important;
+//   }
 
-  .video-container {
-    /* Ensures the canvas overlays correctly over the video */
-    overflow: hidden; /* Important for border-radius on child elements */
-  }
+//   .video-container {
+//     /* Ensures the canvas overlays correctly over the video */
+//     overflow: hidden; /* Important for border-radius on child elements */
+//   }
 
-  video, canvas {
-    display: block; /* Remove extra space below inline elements */
-  }
+//   video, canvas {
+//     display: block; /* Remove extra space below inline elements */
+//   }
